@@ -194,7 +194,7 @@ export default function App() {
       try {
         const [firstName, ...lastNameParts] = regName.trim().split(' ');
         const lastName = lastNameParts.join(' ') || "";
-        const res = await fetch("http://localhost:5000/api/v1/auth/register", {
+        const res = await fetch("https://kisanbandhu.onrender.com/api/v1/auth/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -233,7 +233,7 @@ export default function App() {
         return;
       }
       try {
-        const res = await fetch("http://localhost:5000/api/v1/auth/login", {
+        const res = await fetch("https://kisanbandhu.onrender.com/api/v1/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
