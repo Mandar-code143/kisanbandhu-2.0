@@ -53,7 +53,7 @@ export class PaymentsService {
     logger.info(`Razorpay order created: ${order.id} for user ${userId}`);
 
     return {
-      orderId: order.id,
+      orderId: order.id.toString(),
       amount: order.amount,
       currency: order.currency,
       keyId: config.razorpay.keyId,

@@ -272,11 +272,11 @@ export class IvrService {
   async updateIvrSettings(enabled: boolean, adminId: string) {
     const setting = await prisma.adminSetting.upsert({
       where: { key: "ivr_global_enabled" },
-      update: { value: { enabled } },
+      update: { value: enabled.toString() },
       create: {
         key: "ivr_global_enabled",
-        value: { enabled },
-        description: "Global toggle for IVR call system",
+        value: enabled.toString(),
+        description: "Global toggle for the IVR system",
       },
     });
 

@@ -178,7 +178,7 @@ export class ChatService {
         type: "CHAT_MESSAGE",
         title: "New message",
         message: content.slice(0, 100),
-        data: { chatId, senderId },
+        data: JSON.stringify({ chatId, senderId }),
         link: `/chat/${chatId}`,
       },
     });
