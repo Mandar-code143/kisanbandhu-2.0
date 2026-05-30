@@ -22,13 +22,10 @@ import analyticsRoutes from "./modules/analytics/analytics.routes";
 const app = express();
 
 app.use(helmet());
-const allowedOrigins = ["http://localhost:3000", "http://127.0.0.1:3000"];
-if (config.cors.origin && !allowedOrigins.includes(config.cors.origin)) {
-  allowedOrigins.push(config.cors.origin);
-}
-
 app.use(cors({
-  origin: allowedOrigins,
+  origin: function(origin, callback) {
+    return callback(null, true);
+  },
   credentials: true,
 }));
 
