@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "echo 'Skipping strict tsc, using tsx directly'",
+    "build": "prisma generate && echo 'Skipping strict tsc, using tsx directly'",
     "start": "tsx src/server.ts",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
