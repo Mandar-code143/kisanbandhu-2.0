@@ -146,7 +146,7 @@ export class AuthService {
         throw ApiError.unauthorized("Invalid refresh token");
       }
 
-      const tokens = await this.generateTokens(user.id, user.email, user.role || "FARMER");
+      const tokens = await this.generateTokens(user.id, user.email || "", user.role || "FARMER");
 
       await prisma.user.update({
         where: { id: user.id },

@@ -10,7 +10,12 @@ export class SubscriptionsService {
       throw ApiError.conflict("A plan with this name already exists");
     }
 
-    const plan = await prisma.plan.create({ data: input });
+    const plan = await prisma.plan.create({ 
+      data: {
+        ...input,
+        features: JSON.stringify(input.features),
+      } 
+    });
     logger.info(`Plan created: ${plan.name} (${plan.id})`);
     return plan;
   }
@@ -52,7 +57,10 @@ export class SubscriptionsService {
 
     const updated = await prisma.plan.update({
       where: { id: planId },
-      data: input,
+      data: {
+        ...input,
+        features: input.features ? JSON.stringify(input.features) : undefined,
+      },
     });
 
     logger.info(`Plan updated: ${planId}`);

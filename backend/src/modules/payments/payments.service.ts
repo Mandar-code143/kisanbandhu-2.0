@@ -118,7 +118,7 @@ export class PaymentsService {
 
       try {
         const order = await razorpay.orders.fetch(razorpayOrderId);
-        planId = order.notes?.planId || null;
+        planId = order.notes?.planId ? String(order.notes.planId) : null;
       } catch (err) {
         logger.warn(`Could not fetch Razorpay order notes for ${razorpayOrderId}`);
       }
