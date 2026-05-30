@@ -153,8 +153,16 @@ export default function App() {
 
   // 4. Modal and Signup forms variables
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
-  const [authError, setAuthError] = useState('');
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');  // Auth States
+  const [authError, setAuthError] = useState("");
+  const [isAuthLoading, setIsAuthLoading] = useState(false);
+
+  // Invisible Ping to wake up the Render Free Tier server immediately on page load
+  useEffect(() => {
+    fetch("https://kisanbandhu.onrender.com/api/v1/auth/login", { 
+      method: "OPTIONS" 
+    }).catch(() => {}); 
+  }, []);
   
   useEffect(() => {
     setAuthError('');
@@ -191,6 +199,7 @@ export default function App() {
         setAuthError("Please fill all required fields.");
         return;
       }
+      setIsAuthLoading(true);
       try {
         const [firstName, ...lastNameParts] = regName.trim().split(' ');
         const lastName = lastNameParts.join(' ') || "";
@@ -222,8 +231,10 @@ export default function App() {
         setUser(newUser);
         localStorage.setItem("krushi_token", data.data.accessToken);
         addActivityLog('job_accepted', 'New Account Created', `Welcome to Krushi Rojgar Sandhi as a verified ${regRole}.`);
+        setIsAuthLoading(false);
       } catch (err: any) {
         setAuthError(err.message);
+        setIsAuthLoading(false);
         return;
       }
     } else {
@@ -232,6 +243,7 @@ export default function App() {
         setAuthError("Please enter phone address and password.");
         return;
       }
+      setIsAuthLoading(true);
       try {
         const res = await fetch("https://kisanbandhu.onrender.com/api/v1/auth/login", {
           method: "POST",
@@ -248,18 +260,20 @@ export default function App() {
         const profile = u.profile || {};
         const existingUser: User = {
           id: u.id,
-          name: `${profile.firstName || ''} ${profile.lastName || ''}`.trim() || u.phone,
+          name: `${u.firstName} ${u.lastName}`.trim(),
           phone: u.phone,
-          role: u.role.toLowerCase(),
-          locationState: "Maharashtra",
-          locationDistrict: profile.district || "Nashik",
+          role: u.role.toLowerCase() as any,
+          locationState: profile.state || "Maharashtra",
+          locationDistrict: profile.district || "Pune",
           isPremium: false
         };
         setUser(existingUser);
         localStorage.setItem("krushi_token", data.data.accessToken);
-        addActivityLog('job_accepted', 'Secure Login Completed', `Successfully authenticated profile ${existingUser.name}.`);
+        addActivityLog('job_accepted', 'Login Successful', `Welcome back to Krushi Rojgar Sandhi.`);
+        setIsAuthLoading(false);
       } catch (err: any) {
         setAuthError(err.message);
+        setIsAuthLoading(false);
         return;
       }
     }
@@ -762,7 +776,7 @@ export default function App() {
             </button>
 
             {/* Left Col Decoratives - spans 5 columns */}
-            <div className="md:col-span-5 bg-gradient-to-br from-indigo-950 via-indigo-900 to-slate-900 p-8 flex flex-col justify-between border-r border-slate-200 text-left relative overflow-hidden">
+            <div className="hidden md:flex flex-col md:col-span-5 bg-gradient-to-br from-indigo-950 via-indigo-900 to-slate-900 p-8 justify-between border-r border-slate-200 text-left relative overflow-hidden">
               <div className="absolute top-0 right-0 p-24 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
               
               <div className="space-y-4 relative z-10 text-white">
@@ -788,7 +802,7 @@ export default function App() {
             </div>
 
             {/* Right Col interactive Form fields - spans 7 columns */}
-            <form onSubmit={handleAuthSubmit} className="md:col-span-7 p-8 md:p-10 flex flex-col justify-center space-y-5 text-left bg-white">
+            <form onSubmit={handleAuthSubmit} className="md:col-span-7 p-6 sm:p-8 md:p-10 flex flex-col justify-center space-y-5 text-left bg-white">
               <div className="space-y-1">
                 <h2 className="text-2xl font-black text-slate-900">
                   {authMode === 'login' ? t('welcomeBack') : t('createAccount')}
@@ -927,9 +941,11 @@ export default function App() {
               {/* Submit trigger button */}
               <button
                 type="submit"
-                className="w-full h-12 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-indigo-400 text-white font-black text-xs uppercase tracking-widest hover:shadow-[0_4px_12px_rgba(79,70,229,0.2)] transition-all cursor-pointer"
+                disabled={isAuthLoading}
+                className="w-full h-12 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-indigo-400 text-white font-black text-xs uppercase tracking-widest hover:shadow-[0_4px_12px_rgba(79,70,229,0.2)] transition-all cursor-pointer flex justify-center items-center gap-2 disabled:opacity-70 disabled:cursor-wait"
               >
-                {authMode === 'login' ? t('signinBtn') : t('btnSignup')}
+                {isAuthLoading && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>}
+                {isAuthLoading ? 'Authenticating...' : (authMode === 'login' ? t('signinBtn') : t('btnSignup'))}
               </button>
 
               {/* Register switch footer link */}
