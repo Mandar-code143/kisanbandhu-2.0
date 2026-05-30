@@ -330,9 +330,7 @@ export default function App() {
             className="flex items-center gap-2.5 group text-left cursor-pointer"
             id="brand-lead-logo"
           >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-600 to-primary-400 flex items-center justify-center p-1 font-black shadow-inner">
-              <Sprout className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
-            </div>
+            <img src="/logo.png" alt="KisanBandhu Logo" className="h-10 object-contain" />
             <div>
               <div className="text-white font-extrabold text-sm md:text-base font-heading group-hover:text-primary-400 transition-colors tracking-tight leading-tight">
                 {t('appName')}
@@ -677,9 +675,7 @@ export default function App() {
           {/* Col 1 Brand credits */}
           <div className="md:col-span-4 space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center font-bold text-white">
-                <Sprout className="w-5 h-5 text-white" />
-              </div>
+              <img src="/logo.png" alt="KisanBandhu Logo" className="h-8 object-contain bg-white rounded p-1" />
               <span className="text-white font-extrabold text-sm md:text-base font-heading">
                 {t('appName')}
               </span>
@@ -770,8 +766,8 @@ export default function App() {
               <div className="absolute top-0 right-0 p-24 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
               
               <div className="space-y-4 relative z-10 text-white">
-                <div className="w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center font-bold text-white shadow-md">
-                  <Sprout className="w-6 h-6 text-white" />
+                <div className="bg-white rounded-xl p-2 inline-block shadow-md">
+                  <img src="/logo.png" alt="KisanBandhu Logo" className="h-10 object-contain" />
                 </div>
                 <h3 className="text-2xl font-black text-white leading-tight">Securing Farmers & Workers Livelihood</h3>
                 <p className="text-xs text-indigo-200 leading-relaxed">
