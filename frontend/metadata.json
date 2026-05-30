@@ -1,0 +1,6 @@
+{
+  "name": "Krushi Rojgar Sandhi",
+  "description": "Premium agricultural career and recruitment platform for Indian farmers, workers, and contractors with multi-language voice broadcasting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
