@@ -100,9 +100,15 @@ npm install
 cp .env.example .env
 # Edit .env with your database URL and API keys
 
-# 5. Generate Prisma client & run migrations
+# 5. Database Initialization
+# Recommended Step (If running directly):
 npx prisma generate
-npx prisma migrate dev --name init
+npx prisma db push
+
+# ALTERNATIVE (If your internet/ISP blocks port 5432):
+# 1. Open Supabase Dashboard -> SQL Editor
+# 2. Copy the contents of `database/init_schema.sql`
+# 3. Paste and run it to instantly create all tables.
 
 # 6. Start development servers
 npm run dev

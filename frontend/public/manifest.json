@@ -1,0 +1,17 @@
+{
+  "name": "KrushiConnect",
+  "short_name": "KrushiConnect",
+  "description": "Farm Labor & Equipment Marketplace connecting farmers with workers across Maharashtra",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f4ef",
+  "theme_color": "#2d6a3f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}

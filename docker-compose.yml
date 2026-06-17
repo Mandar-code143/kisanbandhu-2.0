@@ -43,18 +43,16 @@ services:
     networks:
       - krushi_network
 
-  web:
+  frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: krushi_web
+    container_name: krushi_frontend
     restart: unless-stopped
     ports:
-      - '3000:3000'
+      - '3000:80'
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:5000/api
-      - NEXT_PUBLIC_APP_URL=http://localhost:3000
-      - NEXT_PUBLIC_RAZORPAY_KEY_ID=${RAZORPAY_KEY_ID}
+      - VITE_API_URL=http://localhost:5000/api/v1
     depends_on:
       - backend
     networks:

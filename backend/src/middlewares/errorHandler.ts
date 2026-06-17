@@ -9,6 +9,21 @@ export const errorHandler = (
   res: Response,
   _next: NextFunction
 ): void => {
+  const prismaCode = (err as any)?.code;
+
+  if (prismaCode === "P2021" || prismaCode === "P2022" || err.message.includes("does not exist")) {
+    logger.error("Database schema error:", {
+      message: err.message,
+      stack: err.stack,
+    });
+
+    res.status(503).json({
+      success: false,
+      message: "Database is not initialized. Please run Prisma db push and restart the backend.",
+    });
+    return;
+  }
+
   if (err instanceof ApiError) {
     const response: Record<string, unknown> = {
       success: false,

@@ -1,233 +1,212 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Noto+Sans+Devanagari:wght@100..900&display=swap');
 
-@theme {
-  --font-heading: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  /* High Density Modern Clean Slate-Indigo Palette */
-  --color-primary-50: #f5f3ff;
-  --color-primary-100: #ede9fe;
-  --color-primary-200: #ddd6fe;
-  --color-primary-300: #c4b5fd;
-  --color-primary-400: #a78bfa;
-  --color-primary-500: #818cf8;
-  --color-primary-600: #4f46e5;
-  --color-primary-700: #4338ca;
-  --color-primary-800: #3730a3;
-  --color-primary-900: #312e81;
-  --color-primary-950: #1e1b4b;
+@layer base {
+  :root {
+    --background: 40 33% 97%;
+    --foreground: 25 20% 12%;
 
-  --color-accent-50: #fffbeb;
-  --color-accent-100: #fef3c7;
-  --color-accent-200: #fde68a;
-  --color-accent-300: #fcd34d;
-  --color-accent-400: #fbbf24;
-  --color-accent-500: #f59e0b;
-  --color-accent-600: #d97706;
-  --color-accent-700: #b45309;
-  --color-accent-800: #92400e;
-  --color-accent-900: #78350f;
+    --card: 40 30% 99%;
+    --card-foreground: 25 20% 12%;
 
-  --color-earth-50: #f8fafc;
-  --color-earth-100: #f1f5f9;
-  --color-earth-200: #e2e8f0;
-  --color-earth-300: #cbd5e1;
-  --color-earth-400: #94a3b8;
-  --color-earth-500: #64748b;
-  --color-earth-600: #475569;
-  --color-earth-700: #334155;
-  --color-earth-800: #1e293b;
-  --color-earth-900: #0f172a;
-  --color-earth-950: #020617;
+    --popover: 40 30% 99%;
+    --popover-foreground: 25 20% 12%;
 
-  /* Custom variables mapping to deep Royal Monsoon Obsidian Theme */
-  --bg-primary: #040806; /* Deepest black obsidian soil */
-  --bg-secondary: #08100c; /* Crisp twilight background */
-  --bg-card-theme: #0c1813; /* Lustrous forest green card block */
-  --bg-card-hover: #12241c; /* Hover card highlights */
-  --bg-elevated: #162e24; /* Elevated dialog background */
-  --border-subtle: rgba(52, 211, 153, 0.15); /* Hairline emerald-dust borders */
-  --border-active: #10b981; /* Vibrant active emerald tint */
-  --text-primary: #f2faf6; /* Crisp mint white for absolute high-contrast legibility */
-  --text-secondary: #9cbcae; /* Herbal green-gray secondary labels */
-  --text-muted-theme: #58786a; /* Muted moss green for status subtitles */
+    --primary: 142 40% 28%;
+    --primary-foreground: 40 33% 97%;
+
+    --secondary: 36 45% 88%;
+    --secondary-foreground: 25 20% 18%;
+
+    --muted: 40 20% 93%;
+    --muted-foreground: 25 10% 46%;
+
+    --accent: 32 80% 52%;
+    --accent-foreground: 40 33% 97%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 40 33% 97%;
+
+    --success: 142 50% 40%;
+    --success-foreground: 40 33% 97%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 25 20% 12%;
+
+    --earth: 25 35% 35%;
+    --earth-foreground: 40 33% 97%;
+
+    --olive: 82 25% 42%;
+    --olive-foreground: 40 33% 97%;
+
+    --cream: 40 40% 94%;
+    --soil: 25 40% 25%;
+
+    --border: 36 20% 88%;
+    --input: 36 20% 88%;
+    --ring: 142 40% 28%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 40 30% 98%;
+    --sidebar-foreground: 25 20% 18%;
+    --sidebar-primary: 142 40% 28%;
+    --sidebar-primary-foreground: 40 33% 97%;
+    --sidebar-accent: 36 30% 92%;
+    --sidebar-accent-foreground: 25 20% 18%;
+    --sidebar-border: 36 20% 88%;
+    --sidebar-ring: 142 40% 28%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(142 40% 28%), hsl(82 25% 42%));
+    --gradient-warm: linear-gradient(135deg, hsl(32 80% 52%), hsl(38 92% 50%));
+    --gradient-earth: linear-gradient(135deg, hsl(25 35% 35%), hsl(25 40% 25%));
+    --gradient-card: linear-gradient(180deg, hsl(40 30% 99%), hsl(40 33% 96%));
+    --shadow-card: 0 1px 3px 0 hsl(25 20% 12% / 0.04), 0 4px 12px -2px hsl(25 20% 12% / 0.06);
+    --shadow-elevated: 0 4px 16px -4px hsl(25 20% 12% / 0.08), 0 8px 32px -8px hsl(25 20% 12% / 0.1);
+    --shadow-glow: 0 0 24px -4px hsl(142 40% 28% / 0.2);
+  }
+
+  .dark {
+    --background: 25 15% 8%;
+    --foreground: 40 20% 92%;
+    --card: 25 15% 11%;
+    --card-foreground: 40 20% 92%;
+    --popover: 25 15% 11%;
+    --popover-foreground: 40 20% 92%;
+    --primary: 142 45% 45%;
+    --primary-foreground: 25 15% 8%;
+    --secondary: 25 20% 18%;
+    --secondary-foreground: 40 20% 88%;
+    --muted: 25 15% 16%;
+    --muted-foreground: 40 10% 55%;
+    --accent: 32 75% 55%;
+    --accent-foreground: 25 15% 8%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 40 20% 92%;
+    --success: 142 45% 45%;
+    --success-foreground: 25 15% 8%;
+    --warning: 38 85% 55%;
+    --warning-foreground: 25 15% 8%;
+    --earth: 25 25% 55%;
+    --earth-foreground: 25 15% 8%;
+    --olive: 82 20% 55%;
+    --olive-foreground: 25 15% 8%;
+    --cream: 25 15% 14%;
+    --soil: 25 30% 60%;
+    --border: 25 15% 18%;
+    --input: 25 15% 18%;
+    --ring: 142 45% 45%;
+    --sidebar-background: 25 15% 10%;
+    --sidebar-foreground: 40 20% 88%;
+    --sidebar-primary: 142 45% 45%;
+    --sidebar-primary-foreground: 25 15% 8%;
+    --sidebar-accent: 25 15% 16%;
+    --sidebar-accent-foreground: 40 20% 88%;
+    --sidebar-border: 25 15% 18%;
+    --sidebar-ring: 142 45% 45%;
+  }
 }
 
 @layer base {
+  * {
+    @apply border-border;
+  }
+
   body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    @apply bg-background text-foreground font-sans antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    letter-spacing: -0.025em;
+    @apply font-display tracking-tight;
   }
 }
 
-/* Custom subtle shadow and thin border layout styles matching High Density */
-.glow-primary-glow {
-  box-shadow: 0 0 40px rgba(16, 185, 129, 0.12), 0 0 100px rgba(16, 185, 129, 0.05);
+@layer utilities {
+  .text-gradient-hero {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-warm {
+    background: var(--gradient-warm);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .bg-gradient-warm {
+    background: var(--gradient-warm);
+  }
+
+  .bg-gradient-earth {
+    background: var(--gradient-earth);
+  }
+
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.5s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
 }
 
-.glow-accent-glow {
-  box-shadow: 0 0 40px rgba(245, 158, 11, 0.12), 0 0 100px rgba(245, 158, 11, 0.05);
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.glass-card {
-  background: linear-gradient(135deg, rgba(12, 24, 19, 0.85) 0%, rgba(6, 12, 10, 0.95) 100%) !important;
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(52, 211, 153, 0.15) !important;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.05) !important;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.glass-card:hover {
-  border-color: rgba(245, 158, 11, 0.4) !important;
-  box-shadow: 0 8px 32px 0 rgba(16, 185, 129, 0.05), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08) !important;
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-.glass-pill {
-  background: rgba(16, 185, 129, 0.06);
-  border: 1px solid rgba(16, 185, 129, 0.18);
-  backdrop-filter: blur(4px);
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #10b981 0%, #34d399 45%, #f59e0b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Custom scrollbar matching High Density theme */
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #040806;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #12241c;
-  border-radius: 9999px;
-  border: 1px solid rgba(52, 211, 153, 0.08);
+  background: hsl(var(--muted-foreground) / 0.2);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #10b981;
-}
-
-/* Scroll progress line animate */
-@keyframes shrink {
-  from { width: 100%; }
-  to { width: 0%; }
-}
-
-.animate-timer-shrink {
-  animation: shrink 4.5s linear forwards;
-}
-
-/* Organic blobs mapped to crisp green gold */
-@keyframes drift {
-  0% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
-  33% { transform: translate(40px, -40px) rotate(120deg) scale(1.15); }
-  66% { transform: translate(-30px, 20px) rotate(240deg) scale(0.9); }
-  100% { transform: translate(0px, 0px) rotate(360deg) scale(1); }
-}
-
-.animate-blob-slow-1 {
-  animation: drift 25s infinite ease-in-out;
-}
-
-.animate-blob-slow-2 {
-  animation: drift 32s infinite ease-in-out reverse;
-}
-
-.animate-blob-slow-3 {
-  animation: drift 20s infinite ease-in-out calc(-5s);
-}
-
-/* ==========================================
-   HIGH-DATA DENSITY SYSTEM EXQUISITE STYLING
-   ========================================== */
-
-/* Ensure all key labels are fully legible white */
-#main-application-shell .text-white {
-  color: #ffffff !important;
-}
-
-.text-text-primary {
-  color: #f2faf6 !important;
-}
-
-/* Remap absolute dark colors to deep velvet slates */
-.bg-black\/40 {
-  background-color: rgba(6, 12, 10, 0.6) !important;
-  border: 1px solid rgba(52, 211, 153, 0.15) !important;
-  color: #f2faf6 !important;
-}
-
-.bg-[#0b100e] {
-  background-color: #060b08 !important;
-  border: 1px solid rgba(52, 211, 153, 0.12) !important;
-}
-
-.bg-[#090d0b] {
-  background-color: #050a08 !important;
-  border: 1px solid rgba(52, 211, 153, 0.1) !important;
-}
-
-.bg-[#0d1611]\/90 {
-  background-color: rgba(12, 24, 19, 0.95) !important;
-  border: 1px solid rgba(52, 211, 153, 0.2) !important;
-}
-
-.bg-black\/20 {
-  background-color: rgba(6, 12, 10, 0.3) !important;
-  border: 1px solid rgba(52, 211, 153, 0.08) !important;
-}
-
-/* Make sure active navigation indicators match the theme */
-#desktop-nav-links button {
-  color: #9cbcae !important;
-}
-#desktop-nav-links button:hover {
-  color: #10b981 !important;
-}
-#desktop-nav-links button[class*="text-primary-400"] {
-  color: #34d399 !important;
-  font-weight: 800 !important;
-}
-
-/* Maintain crisp dark style for footer & terminal consoles */
-#footer-terminal, footer[class*="bg-[#080d0b]"] {
-  background-color: #030605 !important;
-  border-top: 1px solid rgba(52, 211, 153, 0.15) !important;
-}
-#footer-terminal *, footer[class*="bg-[#080d0b]"] * {
-  color: #8faea1 !important;
-}
-#footer-terminal .text-white, footer[class*="bg-[#080d0b]"] .text-white {
-  color: #ffffff !important;
-}
-#footer-terminal input, footer[class*="bg-[#080d0b]"] input {
-  background-color: rgba(6, 12, 10, 0.6) !important;
-  border-color: rgba(52, 211, 153, 0.15) !important;
-  color: #ffffff !important;
-}
-
-/* Make Code boxes look like glowing terminal screens */
-.bg-[#060a08], div[class*="bg-[#060a08]"] {
-  background-color: #030605 !important;
-  border: 1px solid rgba(16, 185, 129, 0.25) !important;
-  color: #34d399 !important;
-  box-shadow: inset 0 0 16px rgba(16, 185, 129, 0.08);
-}
-
-/* Mobile drawer overlay background */
-.lg\:hidden.fixed.inset-x-0 {
-  background-color: rgba(4, 8, 6, 0.98) !important;
-  border-bottom: 1px solid rgba(52, 211, 153, 0.2) !important;
+  background: hsl(var(--muted-foreground) / 0.35);
 }
